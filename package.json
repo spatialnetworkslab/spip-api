@@ -7,9 +7,8 @@
   "license": "MIT",
   "scripts": {
     "mongo": "mongod --dbpath mongodb-dev-store/",
-    "build": "babel lib/server.js -d dist",
-    "dev": "nodemon lib/server.js --exec babel-node",
-    "serve": "node dist/server.js"
+    "build": "babel lib/index.js -d dist",
+    "dev": "nodemon dev/server.js --exec babel-node"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
