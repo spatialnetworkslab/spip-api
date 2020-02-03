@@ -1,5 +1,6 @@
 import spipAPI from '../lib'
+import config from './config.js'
 
 spipAPI
-  .setup()
+  .setup(config)
   .run()
