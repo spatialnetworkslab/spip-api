@@ -5,7 +5,7 @@ export const structure = {
   description: 'Deze dataset is gebaseerd op het Onderzoek Verplaatsingen in Nederland (OViN) voor de jaren 2004-2017',
   type: 'edges',
   id: 9, // this is the current 'migration' id
-  db: 'server/data/sqlite/edges-ovin-2017.sqlite',
+  db: 'dev/data/sqlite/edges-ovin-2017.sqlite',
   rowSumCalculation: function (sum, parameters) {
     // years should be calculated based on req.parameters
     const years = parameters.fields.year[1] - parameters.fields.year[0] + 1

@@ -5,7 +5,7 @@ export const structure = {
   description: 'Deze dataset is gebaseerd op CBS microdata voor de jaren 1999-2014. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',
   type: 'edges',
   id: 8, // this is the current 'migration' id
-  db: 'server/data/sqlite/edges-migration.sqlite',
+  db: 'dev/data/sqlite/edges-migration.sqlite',
   spatialUnits: {
     municipalities: {
       table: 'verhuizingen_19992014_gem',

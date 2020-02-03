@@ -5,7 +5,7 @@ export const structure = {
                  'Bevat alleen banen in Zuid-Holland.',
   type: 'nodes',
   id: 11,
-  db: 'server/data/sqlite/nodes-2015.sqlite',
+  db: 'dev/data/sqlite/nodes-2015.sqlite',
   spatialUnits: {
     municipalities: {
       id: 'gem',

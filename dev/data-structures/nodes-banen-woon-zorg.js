@@ -5,7 +5,7 @@ export const structure = {
   description: 'Deze dataset is gebaseerd op CBS microdata voor de jaren 1999-2014. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',
   type: 'nodes',
   id: 10, // this is the current 'migration' id
-  db: 'server/data/sqlite/nodes-zorg.sqlite',
+  db: 'dev/data/sqlite/nodes-zorg.sqlite',
   spatialUnits: {
     municipalities: {
       id: 'gem',

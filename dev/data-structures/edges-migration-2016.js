@@ -5,7 +5,7 @@ export const structure = {
   description: 'Deze dataset is gebaseerd op CBS microdata voor de jaren 1999-2016. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',
   type: 'edges',
   id: 8, // this is the current 'migration' id
-  db: 'server/data/sqlite/edges-migration-2016.sqlite',
+  db: 'dev/data/sqlite/edges-migration-2016.sqlite',
   rowSumCalculation: function (sum, parameters, structure) {
     // years should be calculated based on req.parameters
     if (parameters.fields.divideYears === '1') {
