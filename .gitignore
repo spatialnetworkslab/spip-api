@@ -2,4 +2,3 @@ dist
 leveldb-store
 node_modules
 dev/data
-dev/data-structures
