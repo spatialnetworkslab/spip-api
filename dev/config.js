@@ -1,5 +1,5 @@
-import edges from './data-structures/edges'
-import nodes from './data-structures/nodes'
+import edges from './dataset-descriptions/edges'
+import nodes from './dataset-descriptions/nodes'
 
 export default {
   port: 3002,
@@ -14,7 +14,7 @@ export default {
     issuer: 'https://spip.eu.auth0.com/'
   },
 
-  dataSources: {
+  datasetDescriptions: {
     edges,
     nodes
   }

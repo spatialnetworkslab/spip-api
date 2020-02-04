@@ -4,7 +4,7 @@ export default {
   description: 'Deze dataset bevat het oppervlakte in vierkante kilometers per ruimtelijke eenheid.',
   type: 'nodes',
   id: 12, // this is the current 'migration' id
-  db: 'dev/data/sqlite/nodes-2015.sqlite',
+  db: 'dev/datasets/nodes-2015.sqlite',
   spatialUnits: {
     municipalities: {
       id: 'gem',

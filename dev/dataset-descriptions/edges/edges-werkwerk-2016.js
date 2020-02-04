@@ -1,21 +1,16 @@
 // this should be stored in a database instead. but we start off in plain js to help construct the final structure
 export default {
-  name: 'Baanverhuizingen Microdata 2015',
+  name: 'Baanverhuizingen Microdata 2016',
   shortName: 'werkwerk',
-  description: 'Deze dataset is gebaseerd op CBS microdata voor de jaren 1999-2015. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',
+  description: 'Deze dataset is gebaseerd op CBS microdata voor de jaren 1999-2016. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',
   type: 'edges',
   id: 8, // this is the current 'migration' id
-  db: 'dev/data/sqlite/edges-werkwerk-2015.sqlite',
+  db: 'dev/datasets/edges-werkwerk-2016.sqlite',
   spatialUnits: {
     municipalities: {
-      table: 'werkwerk_19992015_gem',
+      table: 'werkwerk_19992016_gem',
       sourceName: 'GEMy1',
       sinkName: 'GEMy2'
-    },
-    postcodes: {
-      table: 'werkwerk_19992015_pc',
-      sourceName: 'POSTCODEy1',
-      sinkName: 'POSTCODEy2'
     }
   },
   rowSumCalculation: function (sum, parameters, structure) {
@@ -62,14 +57,13 @@ export default {
       type: 'category',
       multiple: false,
       possible: {
-        '99-02': '1999-2002',
-        '03-06': '2003-2006',
         '07-10': '2007-2010',
         '11-14': '2011-2014',
         '12-15': '2012-2015',
-        '07-15': '2007-2015'
+        '13-16': '2013-2016',
+        '07-16': '2007-2016'
       },
-      defaultValue: '12-15'
+      defaultValue: '13-16'
     },
     age: {
       name: 'Leeftijd',
@@ -121,7 +115,9 @@ export default {
         4: 'Informatiegericht: Publiek (Quartair)',
         5: 'Persoonsgericht: Retail, Ambacht, Horeca & Vervoer',
         6: 'Persoonsgericht: Zorg, Onderwijs, Cultuur',
-        7: 'Overig (uitzend & onbekend)'
+        7: 'Overig (uitzend & onbekend)',
+        8: 'Landbouw',
+        9: 'Metaal- en maritieme industrie'
       }
     },
     sectorsector: { // TODO spit this out so you can select sector in Y1 and sector in Y2
@@ -178,7 +174,9 @@ export default {
         46: '7-4',
         47: '7-5',
         48: '7-6',
-        49: '7-7'
+        49: '7-7',
+        50: '8-8',
+        51: '9-9'
       }
     },
     soortbaan: {

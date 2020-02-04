@@ -1,19 +1,19 @@
 // this should be stored in a database instead. but we start off in plain js to help construct the final structure
 export default {
-  name: 'Baangegevens Werkadres Zorg',
-  shortName: 'baangegevens werk',
-  description: 'Deze dataset is gebaseerd op CBS microdata voor de jaren 1999-2016. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',
+  name: 'Baangegevens Woonadres',
+  shortName: 'baangegevens woon',
+  description: 'Deze dataset is gebaseerd op CBS microdata voor de jaren 1999-2014. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',
   type: 'nodes',
   id: 10, // this is the current 'migration' id
-  db: 'dev/data/sqlite/nodes-zorg.sqlite',
+  db: 'dev/datasets/nodes.sqlite',
   spatialUnits: {
     municipalities: {
       id: 'gem',
-      table: 'woonwerk_werk_zorg_gem'
+      table: 'woonwerk_woon_19992014_gem'
     },
     postcodes: {
       id: 'pc4',
-      table: 'woonwerk_werk_zorg_pc'
+      table: 'woonwerk_woon_19992014_pc'
     }
   },
   count: 'value',
@@ -32,9 +32,11 @@ export default {
       return query
     } else {
       return query.clearWhere()
-        .whereNotNull('sectorcat')
+        .whereNotNull('age')
         .whereNull('opl')
         .whereNull('inks')
+        .whereNull('sectorcat')
+        .whereNull('soortbaan')
         .where('year', parameters.fields.year)
     }
   },
@@ -45,13 +47,28 @@ export default {
       type: 'category',
       multiple: false,
       possible: {
+        1999: '1999',
+        2002: '2002',
+        2006: '2006',
         2007: '2007',
         2010: '2010',
-        2014: '2014',
-        2015: '2015',
-        2016: '2016'
+        2014: '2014'
       },
-      defaultValue: '2016'
+      defaultValue: '2014'
+    },
+    age: {
+      name: 'Leeftijd',
+      description: 'A longer description can be included here',
+      type: 'category',
+      multiple: true,
+      possible: {
+        1: 'jonger dan 18',
+        2: '18-23',
+        3: '24-29',
+        4: '30-40',
+        5: '40-59',
+        6: '60+'
+      }
     },
     opl: {
       name: 'Opleiding',
@@ -83,8 +100,24 @@ export default {
       type: 'category',
       multiple: true,
       possible: {
-        1: 'Zorg (rijksmiddelen)',
-        2: 'Zorg (gemeentemiddelen)'
+        1: 'Materiaalgericht: Productie',
+        2: 'Materiaalgericht: Dienstverlening',
+        3: 'Informatiegericht: Commercieel',
+        4: 'Informatiegericht: Publiek (Quartair)',
+        5: 'Persoonsgericht: Retail, Ambacht, Horeca & Vervoer',
+        6: 'Persoonsgericht: Zorg, Onderwijs, Cultuur',
+        7: 'Overig (uitzend & onbekend)'
+      }
+    },
+    soortbaan: {
+      name: 'Soort Baan',
+      description: 'A longer description can be included here',
+      type: 'category',
+      multiple: true,
+      possible: {
+        1: 'DGA',
+        2: 'Overig',
+        3: 'Stagaire, WSW, Oproep, Uitzend'
       }
     }
   }

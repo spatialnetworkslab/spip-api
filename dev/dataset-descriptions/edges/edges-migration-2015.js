@@ -1,12 +1,11 @@
 // this should be stored in a database instead. but we start off in plain js to help construct the final structure
 export default {
-  name: 'Woon-Werk Microdata 2016',
-  shortName: 'woonwerk',
-  description: 'Deze dataset is gebaseerd op CBS microdata voor de jaren 1999-2016. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',
+  name: 'Verhuizingen Microdata 2015',
+  shortName: 'migration',
+  description: 'Deze dataset is gebaseerd op CBS microdata voor de jaren 1999-2015. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',
   type: 'edges',
   id: 8, // this is the current 'migration' id
-  db: 'dev/data/sqlite/edges-woonwerk-2016.sqlite',
-  hasNulls: true,
+  db: 'dev/datasets/edges-migration-2015.sqlite',
   rowSumCalculation: function (sum, parameters, structure) {
     // years should be calculated based on req.parameters
     if (parameters.fields.divideYears === '1') {
@@ -17,6 +16,7 @@ export default {
       return sum
     }
   },
+  hasNulls: true,
   total: function (query, parameters) {
     // count how many fields apart from year have non null values
     // if none do, count will be 0 and we need to return the total for that year
@@ -33,21 +33,17 @@ export default {
         .whereNotNull('age')
         .whereNull('opl')
         .whereNull('inks')
-        .whereNull('sectorcat')
-        .whereNull('soortbaan')
+        .whereNull('sec')
+        .whereNull('hh')
+        .whereNull('inkchanges')
         .where('year', parameters.fields.year)
     }
   },
   spatialUnits: {
     municipalities: {
-      table: 'woonwerk_19992016_gem',
-      sourceName: 'woongem',
-      sinkName: 'werkgem'
-    },
-    postcodes: {
-      table: 'woonwerk_19992016_pc',
-      sourceName: 'woonpostcode',
-      sinkName: 'werkpostcode'
+      table: 'verhuizingen_19992015_gem',
+      sourceName: 'gemPre',
+      sinkName: 'gemPost'
     }
   },
   count: 'value',
@@ -61,14 +57,13 @@ export default {
       type: 'category',
       multiple: false,
       possible: {
-        19992002: '1999-2002',
-        20032006: '2003-2006',
-        20072010: '2007-2010',
-        20112014: '2011-2014',
-        20122015: '2012-2015',
-        20132016: '2013-2016'
+        'p99-02': '1999-2002',
+        'p03-06': '2003-2006',
+        'p07-10': '2007-2010',
+        'p11-14': '2011-2014',
+        'p12-15': '2012-2015'
       },
-      defaultValue: '20132016'
+      defaultValue: 'p12-15'
     },
     age: {
       name: 'Leeftijd',
@@ -76,7 +71,7 @@ export default {
       type: 'category',
       multiple: true,
       possible: {
-        1: 'jonger dan 18',
+        1: '12-18',
         2: '18-23',
         3: '24-29',
         4: '30-40',
@@ -108,32 +103,51 @@ export default {
         5: '80-100%'
       }
     },
-    sectorcat: {
-      name: 'Sector',
+    sec: {
+      name: 'Sociaal-Economische Positie',
       description: 'A longer description can be included here',
       type: 'category',
       multiple: true,
       possible: {
-        1: 'Materiaalgericht: Productie',
-        2: 'Materiaalgericht: Dienstverlening',
-        3: 'Informatiegericht: Commercieel',
-        4: 'Informatiegericht: Publiek (Quartair)',
-        5: 'Persoonsgericht: Retail, Ambacht, Horeca & Vervoer',
-        6: 'Persoonsgericht: Zorg, Onderwijs, Cultuur',
-        7: 'Landbouw',
-        8: 'Metaal- en maritieme industrie',
-        9: 'Overig (uitzend & onbekend)'
+        1: "Voor en na verhuizing 'actief' (werkend, DGA , zelfstand of overig actief)",
+        2: 'Voor en na verhuizing ontvanger uitkering (ex. Pensioen)',
+        3: 'Voor en na verhuizing pensioen',
+        4: 'Voor en na verhuizing scholier/student',
+        5: 'Voor verhuizing actief, na verhuizing pensioen',
+        6: 'Voor verhuizing scholier/student, na verhuizing actief',
+        7: 'Voor scholier/student, na uitkering',
+        8: 'Voor actief, na uitkering',
+        9: 'Voor uitkering, na actief',
+        10: 'Voor en na verhuizing scholier/student, gecombineerd met voor verhuizing huishouden met kinderen, na verhuizing huishouden zonder kinderen'
       }
     },
-    soortbaan: {
-      name: 'Soort Baan',
+    hh: {
+      name: 'Huishoudtype',
       description: 'A longer description can be included here',
       type: 'category',
       multiple: true,
       possible: {
-        1: 'DGA',
-        2: 'Overig',
-        3: 'Stagaire, WSW, Oproep, Uitzend'
+        1: 'Voor en na eenpersoonshuishouden',
+        2: 'Voor en na paar zonder kinderen',
+        3: 'Voor en na paar of 1-ouder met kinderen',
+        4: 'Voor en na overig',
+        5: 'Voor 1persoons, na paar zonder kinderen',
+        6: 'Voor paar zonder kinderen, na paar met kinderen',
+        7: 'Voor paar zonder kinderen, na eenpersoonshuishouden',
+        8: 'Voor paar met kinderen, na paar zonder kinderen'
+      }
+    },
+    inkchanges: {
+      name: 'Inkomenverandering',
+      description: 'A longer description can be included here',
+      type: 'category',
+      multiple: true,
+      possible: {
+        1: '< -15%',
+        2: '-15 - 0%',
+        3: '0-10%',
+        4: '10-25%',
+        5: '>25%'
       }
     },
     divideYears: {

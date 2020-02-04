@@ -1,11 +1,11 @@
 // this should be stored in a database instead. but we start off in plain js to help construct the final structure
 export default {
-  name: 'Verplaatsingen 2004-2016',
-  shortName: 'ovin20042016',
-  description: 'Deze dataset is gebaseerd op het Onderzoek Verplaatsingen in Nederland (OViN) voor de jaren 2004-2016',
+  name: 'Verplaatsingen 2004-2017',
+  shortName: 'ovin20042017',
+  description: 'Deze dataset is gebaseerd op het Onderzoek Verplaatsingen in Nederland (OViN) voor de jaren 2004-2017',
   type: 'edges',
-  id: 8, // this is the current 'migration' id
-  db: 'dev/data/sqlite/edges-ovin.sqlite',
+  id: 9, // this is the current 'migration' id
+  db: 'dev/datasets/edges-ovin-2017.sqlite',
   rowSumCalculation: function (sum, parameters) {
     // years should be calculated based on req.parameters
     const years = parameters.fields.year[1] - parameters.fields.year[0] + 1
@@ -13,12 +13,12 @@ export default {
   },
   spatialUnits: {
     municipalities: {
-      table: 'ovin20042016-distance-filter',
+      table: 'ovin20042017',
       sourceName: 'c_vgemf',
       sinkName: 'c_agemf'
     },
     postcodes: {
-      table: 'ovin20042016-distance-filter',
+      table: 'ovin20042017',
       sourceName: 'c_vpcf',
       sinkName: 'c_apcf'
     }
@@ -33,7 +33,7 @@ export default {
       description: 'A longer description can be included here',
       type: 'range',
       min: 2004,
-      max: 2016
+      max: 2017
     },
     c_lft: {
       name: 'Leeftijd',

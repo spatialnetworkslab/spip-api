@@ -1,11 +1,18 @@
 // this should be stored in a database instead. but we start off in plain js to help construct the final structure
 export default {
-  name: 'Verhuizingen Microdata 2015',
+  name: 'Verhuizingen Microdata',
   shortName: 'migration',
-  description: 'Deze dataset is gebaseerd op CBS microdata voor de jaren 1999-2015. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',
+  description: 'Deze dataset is gebaseerd op CBS microdata voor de jaren 1999-2014. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',
   type: 'edges',
   id: 8, // this is the current 'migration' id
-  db: 'dev/data/sqlite/edges-migration-2015.sqlite',
+  db: 'dev/datasets/edges-migration.sqlite',
+  spatialUnits: {
+    municipalities: {
+      table: 'verhuizingen_19992014_gem',
+      sourceName: 'gemPre',
+      sinkName: 'gemPost'
+    }
+  },
   rowSumCalculation: function (sum, parameters, structure) {
     // years should be calculated based on req.parameters
     if (parameters.fields.divideYears === '1') {
@@ -36,14 +43,8 @@ export default {
         .whereNull('sec')
         .whereNull('hh')
         .whereNull('inkchanges')
+        .whereNull('verm')
         .where('year', parameters.fields.year)
-    }
-  },
-  spatialUnits: {
-    municipalities: {
-      table: 'verhuizingen_19992015_gem',
-      sourceName: 'gemPre',
-      sinkName: 'gemPost'
     }
   },
   count: 'value',
@@ -57,13 +58,12 @@ export default {
       type: 'category',
       multiple: false,
       possible: {
-        'p99-02': '1999-2002',
-        'p03-06': '2003-2006',
-        'p07-10': '2007-2010',
-        'p11-14': '2011-2014',
-        'p12-15': '2012-2015'
+        p9902: '1999-2002',
+        p0306: '2003-2006',
+        p0710: '2007-2010',
+        p1114: '2011-2014'
       },
-      defaultValue: 'p12-15'
+      defaultValue: 'p1114'
     },
     age: {
       name: 'Leeftijd',
@@ -148,6 +148,18 @@ export default {
         3: '0-10%',
         4: '10-25%',
         5: '>25%'
+      }
+    },
+    verm: {
+      name: 'Vermogen',
+      description: 'A longer description can be included here',
+      type: 'category',
+      multiple: true,
+      possible: {
+        1: '< 20%',
+        2: '20-60%',
+        3: '60-90%',
+        4: '90-100%'
       }
     },
     divideYears: {

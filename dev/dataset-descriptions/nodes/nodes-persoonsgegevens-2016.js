@@ -5,7 +5,7 @@ export default {
   description: 'Deze dataset is gebaseerd op CBS microdata voor de jaren 1999-2016. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',
   type: 'nodes',
   id: 8, // this is the current 'migration' id
-  db: 'dev/data/sqlite/nodes-2016.sqlite',
+  db: 'dev/datasets/nodes-2016.sqlite',
   spatialUnits: {
     municipalities: {
       id: 'gem',

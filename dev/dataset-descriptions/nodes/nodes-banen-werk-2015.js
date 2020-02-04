@@ -1,19 +1,19 @@
 // this should be stored in a database instead. but we start off in plain js to help construct the final structure
 export default {
-  name: 'Baangegevens Werkadres',
+  name: 'Baangegevens Werkadres 2015',
   shortName: 'baangegevens werk',
   description: 'Deze dataset is gebaseerd op CBS microdata voor de jaren 1999-2014. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',
   type: 'nodes',
   id: 10, // this is the current 'migration' id
-  db: 'dev/data/sqlite/nodes.sqlite',
+  db: 'dev/datasets/nodes-2015.sqlite',
   spatialUnits: {
     municipalities: {
       id: 'gem',
-      table: 'woonwerk_werk_19992014_gem'
+      table: 'woonwerk_werk_19992015_gem'
     },
     postcodes: {
       id: 'pc4',
-      table: 'woonwerk_werk_19992014_pc'
+      table: 'woonwerk_werk_19992015_pc'
     }
   },
   count: 'value',
@@ -52,9 +52,10 @@ export default {
         2006: '2006',
         2007: '2007',
         2010: '2010',
-        2014: '2014'
+        2014: '2014',
+        2015: '2015'
       },
-      defaultValue: '2014'
+      defaultValue: '2015'
     },
     age: {
       name: 'Leeftijd',

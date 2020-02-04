@@ -1,18 +1,12 @@
 // this should be stored in a database instead. but we start off in plain js to help construct the final structure
 export default {
-  name: 'Baanverhuizingen Microdata 2016',
-  shortName: 'werkwerk',
-  description: 'Deze dataset is gebaseerd op CBS microdata voor de jaren 1999-2016. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',
+  name: 'Woon-Werk Microdata 2015',
+  shortName: 'woonwerk',
+  description: 'Deze dataset is gebaseerd op CBS microdata voor de jaren 1999-2015. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',
   type: 'edges',
   id: 8, // this is the current 'migration' id
-  db: 'dev/data/sqlite/edges-werkwerk-2016.sqlite',
-  spatialUnits: {
-    municipalities: {
-      table: 'werkwerk_19992016_gem',
-      sourceName: 'GEMy1',
-      sinkName: 'GEMy2'
-    }
-  },
+  db: 'dev/datasets/edges-woonwerk-2015.sqlite',
+  hasNulls: true,
   rowSumCalculation: function (sum, parameters, structure) {
     // years should be calculated based on req.parameters
     if (parameters.fields.divideYears === '1') {
@@ -23,7 +17,6 @@ export default {
       return sum
     }
   },
-  hasNulls: true,
   total: function (query, parameters) {
     // count how many fields apart from year have non null values
     // if none do, count will be 0 and we need to return the total for that year
@@ -40,10 +33,21 @@ export default {
         .whereNotNull('age')
         .whereNull('opl')
         .whereNull('inks')
-        .whereNull('sectorcat2')
-        .whereNull('sectorsector')
+        .whereNull('sectorcat')
         .whereNull('soortbaan')
         .where('year', parameters.fields.year)
+    }
+  },
+  spatialUnits: {
+    municipalities: {
+      table: 'woonwerk_19992015_gem',
+      sourceName: 'woongem',
+      sinkName: 'werkgem'
+    },
+    postcodes: {
+      table: 'woonwerk_19992015_pc',
+      sourceName: 'woonpostcode',
+      sinkName: 'werkpostcode'
     }
   },
   count: 'value',
@@ -57,13 +61,13 @@ export default {
       type: 'category',
       multiple: false,
       possible: {
-        '07-10': '2007-2010',
-        '11-14': '2011-2014',
-        '12-15': '2012-2015',
-        '13-16': '2013-2016',
-        '07-16': '2007-2016'
+        19992002: '1999-2002',
+        20032006: '2003-2006',
+        20072010: '2007-2010',
+        20112014: '2011-2014',
+        20122015: '2012-2015'
       },
-      defaultValue: '13-16'
+      defaultValue: '20122015'
     },
     age: {
       name: 'Leeftijd',
@@ -103,7 +107,7 @@ export default {
         5: '80-100%'
       }
     },
-    sectorcat2: {
+    sectorcat: {
       name: 'Sector',
       description: 'A longer description can be included here',
       type: 'category',
@@ -115,68 +119,7 @@ export default {
         4: 'Informatiegericht: Publiek (Quartair)',
         5: 'Persoonsgericht: Retail, Ambacht, Horeca & Vervoer',
         6: 'Persoonsgericht: Zorg, Onderwijs, Cultuur',
-        7: 'Overig (uitzend & onbekend)',
-        8: 'Landbouw',
-        9: 'Metaal- en maritieme industrie'
-      }
-    },
-    sectorsector: { // TODO spit this out so you can select sector in Y1 and sector in Y2
-      name: 'Sectorverandering',
-      description: 'A longer description can be included here',
-      type: 'category',
-      multiple: true,
-      possible: {
-        1: '1-1',
-        2: '1-2',
-        3: '1-3',
-        4: '1-4',
-        5: '1-5',
-        6: '1-6',
-        7: '1-7',
-        8: '2-1',
-        9: '2-2',
-        10: '2-3',
-        11: '2-4',
-        12: '2-5',
-        13: '2-6',
-        14: '2-7',
-        15: '3-1',
-        16: '3-2',
-        17: '3-3',
-        18: '3-4',
-        19: '3-5',
-        20: '3-6',
-        21: '3-7',
-        22: '4-1',
-        23: '4-2',
-        24: '4-3',
-        25: '4-4',
-        26: '4-5',
-        27: '4-6',
-        28: '4-7',
-        29: '5-1',
-        30: '5-2',
-        31: '5-3',
-        32: '5-4',
-        33: '5-5',
-        34: '5-6',
-        35: '5-7',
-        36: '6-1',
-        37: '6-2',
-        38: '6-3',
-        39: '6-4',
-        40: '6-5',
-        41: '6-6',
-        42: '6-7',
-        43: '7-1',
-        44: '7-2',
-        45: '7-3',
-        46: '7-4',
-        47: '7-5',
-        48: '7-6',
-        49: '7-7',
-        50: '8-8',
-        51: '9-9'
+        7: 'Overig (uitzend & onbekend)'
       }
     },
     soortbaan: {

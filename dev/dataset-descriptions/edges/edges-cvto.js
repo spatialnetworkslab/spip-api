@@ -5,7 +5,7 @@ export default {
   description: 'Deze dataset is gebaseerd op CVTO microdata voor de jaren 2004-2014, met data voor elk even jaar. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',
   type: 'edges',
   id: 8, // this is the current 'migration' id
-  db: 'dev/data/sqlite/edges-cvto.sqlite',
+  db: 'dev/datasets/edges-cvto.sqlite',
   rowSumCalculation: function (sum, parameters) {
     // years should be calculated based on req.parameters
     const roundUp = n => n + (n % 2)

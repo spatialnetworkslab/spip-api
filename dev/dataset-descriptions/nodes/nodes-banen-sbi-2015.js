@@ -5,7 +5,7 @@ export default {
                  'Bevat alleen banen in Zuid-Holland.',
   type: 'nodes',
   id: 11,
-  db: 'dev/data/sqlite/nodes-2015.sqlite',
+  db: 'dev/datasets/nodes-2015.sqlite',
   spatialUnits: {
     municipalities: {
       id: 'gem',

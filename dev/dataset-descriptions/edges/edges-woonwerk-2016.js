@@ -1,30 +1,28 @@
 // this should be stored in a database instead. but we start off in plain js to help construct the final structure
 export default {
-  name: 'Baangegevens Werkadres 2016',
-  shortName: 'baangegevens werk',
+  name: 'Woon-Werk Microdata 2016',
+  shortName: 'woonwerk',
   description: 'Deze dataset is gebaseerd op CBS microdata voor de jaren 1999-2016. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',
-  type: 'nodes',
-  id: 10, // this is the current 'migration' id
-  db: 'dev/data/sqlite/nodes-2016.sqlite',
-  spatialUnits: {
-    municipalities: {
-      id: 'gem',
-      table: 'woonwerk_werk_19992016_gem'
-    },
-    postcodes: {
-      id: 'pc4',
-      table: 'woonwerk_werk_19992016_pc'
+  type: 'edges',
+  id: 8, // this is the current 'migration' id
+  db: 'dev/datasets/edges-woonwerk-2016.sqlite',
+  hasNulls: true,
+  rowSumCalculation: function (sum, parameters, structure) {
+    // years should be calculated based on req.parameters
+    if (parameters.fields.divideYears === '1') {
+      const range = structure.fields.year.possible[parameters.fields.year].split('-')
+      const years = range[1] - range[0] + 1
+      return sum / years
+    } else {
+      return sum
     }
   },
-  count: 'value',
-  weight: 'value',
-  groupBy: true,
   total: function (query, parameters) {
     // count how many fields apart from year have non null values
     // if none do, count will be 0 and we need to return the total for that year
     let count = 0
     for (const field in parameters.fields) {
-      if (field !== 'year' && parameters.fields[field]) {
+      if (field !== 'year' && field !== 'divideYears' && parameters.fields[field]) {
         count += 1
       }
     }
@@ -40,20 +38,37 @@ export default {
         .where('year', parameters.fields.year)
     }
   },
+  spatialUnits: {
+    municipalities: {
+      table: 'woonwerk_19992016_gem',
+      sourceName: 'woongem',
+      sinkName: 'werkgem'
+    },
+    postcodes: {
+      table: 'woonwerk_19992016_pc',
+      sourceName: 'woonpostcode',
+      sinkName: 'werkpostcode'
+    }
+  },
+  count: 'value',
+  countType: 'rowIsAggregation',
+  weight: 'value',
+  groupBy: true,
   fields: {
     year: {
-      name: 'Jaar',
+      name: 'Periode',
       description: 'A longer description can be included here',
       type: 'category',
       multiple: false,
       possible: {
-        2007: '2007',
-        2010: '2010',
-        2014: '2014',
-        2015: '2015',
-        2016: '2016'
+        19992002: '1999-2002',
+        20032006: '2003-2006',
+        20072010: '2007-2010',
+        20112014: '2011-2014',
+        20122015: '2012-2015',
+        20132016: '2013-2016'
       },
-      defaultValue: '2016'
+      defaultValue: '20132016'
     },
     age: {
       name: 'Leeftijd',
@@ -119,6 +134,23 @@ export default {
         1: 'DGA',
         2: 'Overig',
         3: 'Stagaire, WSW, Oproep, Uitzend'
+      }
+    },
+    divideYears: {
+      name: 'Data Per Jaar',
+      description: 'A longer description can be included here',
+      type: 'special',
+      specialType: {
+        type: 'category',
+        multiple: false
+      },
+      possible: {
+        0: 'Nee',
+        1: 'Aan'
+      },
+      defaultValue: 0,
+      customLogic: function (query, value) {
+        return query
       }
     }
   }
