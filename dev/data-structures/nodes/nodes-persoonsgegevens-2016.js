@@ -1,5 +1,5 @@
 // this should be stored in a database instead. but we start off in plain js to help construct the final structure
-export const structure = {
+export default {
   name: 'Persoonsgegevens 2016',
   shortName: 'persoonsgegevens',
   description: 'Deze dataset is gebaseerd op CBS microdata voor de jaren 1999-2016. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',

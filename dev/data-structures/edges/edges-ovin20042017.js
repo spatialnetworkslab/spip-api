@@ -1,5 +1,5 @@
 // this should be stored in a database instead. but we start off in plain js to help construct the final structure
-export const structure = {
+export default {
   name: 'Verplaatsingen 2004-2017',
   shortName: 'ovin20042017',
   description: 'Deze dataset is gebaseerd op het Onderzoek Verplaatsingen in Nederland (OViN) voor de jaren 2004-2017',

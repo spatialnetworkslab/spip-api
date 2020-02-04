@@ -1,3 +1,6 @@
+import edges from './data-structures/edges'
+import nodes from './data-structures/nodes'
+
 export default {
   port: 3002,
 
@@ -9,5 +12,10 @@ export default {
     jwksUri: 'https://spip.eu.auth0.com/.well-known/jwks.json',
     audience: 'https://spip.spatialnetworkslab.com', // this looks like a URL but is just an identifier
     issuer: 'https://spip.eu.auth0.com/'
+  },
+
+  dataSources: {
+    edges,
+    nodes
   }
 }

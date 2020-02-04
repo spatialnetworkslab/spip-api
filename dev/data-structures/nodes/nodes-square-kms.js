@@ -1,4 +1,4 @@
-export const structure = {
+export default {
   name: 'Vierkante kilometers',
   shortName: 'sq km',
   description: 'Deze dataset bevat het oppervlakte in vierkante kilometers per ruimtelijke eenheid.',

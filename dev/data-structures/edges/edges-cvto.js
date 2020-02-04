@@ -1,5 +1,5 @@
 // this should be stored in a database instead. but we start off in plain js to help construct the final structure
-export const structure = {
+export default {
   name: 'CVTO Microdata 2004-2014',
   shortName: 'cvto',
   description: 'Deze dataset is gebaseerd op CVTO microdata voor de jaren 2004-2014, met data voor elk even jaar. Alleen cellen met meer dan 10 personen zijn opgenomen vanwege privacy waarborg.',

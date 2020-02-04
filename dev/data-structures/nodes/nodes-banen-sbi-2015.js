@@ -1,4 +1,4 @@
-export const structure = {
+export default {
   name: 'Banen SBI Zuid-Holland 2015',
   shortName: 'banen sbi zh',
   description: 'Deze dataset is gebaseerd op de LISA bedrijfslocaties dataset. \n' +
