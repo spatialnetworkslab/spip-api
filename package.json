@@ -7,33 +7,37 @@
   "license": "MIT",
   "scripts": {
     "mongo": "mongod --dbpath mongodb-dev-store/",
-    "build": "babel lib/server.js -d dist",
-    "dev": "nodemon lib/server.js --exec babel-node",
-    "serve": "node dist/server.js"
+    "build": "babel lib/index.js -d dist",
+    "dev": "nodemon dev/server.js --exec babel-node"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.19.0",
     "connect-history-api-fallback": "^1.6.0",
     "connect-timeout": "^1.9.0",
     "cookie-parser": "^1.4.4",
-    "csv-stringify": "^5.3.0",
-    "express": "^4.16.4",
+    "csv-stringify": "^5.3.6",
+    "express": "^4.17.1",
     "express-jwt": "^5.3.1",
-    "helmet": "^3.16.0",
-    "http-proxy": "^1.17.0",
-    "jwks-rsa": "^1.4.0",
-    "knex": "^0.16.3",
-    "level": "^4.0.0",
-    "mongodb": "^3.1.13",
-    "mongoose": "^5.4.19",
+    "helmet": "^3.21.2",
+    "http-proxy": "^1.18.0",
+    "jwks-rsa": "^1.6.2",
+    "knex": "^0.20.8",
+    "level": "^6.0.0",
+    "mongodb": "^3.5.2",
+    "mongoose": "^5.8.11",
     "morgan": "^1.9.1",
     "path": "^0.12.7",
-    "sqlite3": "^4.0.6",
-    "yargs": "^13.2.2"
+    "sqlite3": "^4.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "nodemon": "^1.18.10"
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "nodemon": "^2.0.2"
   }
 }

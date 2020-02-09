@@ -1,5 +1,4 @@
 dist
 leveldb-store
 node_modules
-lib/data
-lib/data-structures
+dev/datasets
