@@ -16,5 +16,7 @@ export default {
   datasetDescriptions: {
     edges,
     nodes
-  }
+  },
+
+  frontendConfig: {}
 }
