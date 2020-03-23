@@ -1,14 +1,14 @@
 {
   "name": "spip-api",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "https://github.com/spatialnetworkslab/spip-api.git",
   "author": "Spatial Networks Lab",
   "license": "MIT",
+  "main": "dist/spip-api.cjs.js",
+  "module": "dist/spip-api.esm.js",
   "scripts": {
     "mongo": "mongod --dbpath mongodb-dev-store/",
-    "build": "babel lib/index.js -d dist",
-    "dev": "nodemon dev/server.js --exec babel-node"
+    "build": "rollup -c"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -30,14 +30,12 @@
     "sqlite3": "^4.1.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "nodemon": "^2.0.2"
+    "rollup": "^2.1.0"
   }
 }
