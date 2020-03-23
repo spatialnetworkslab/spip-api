@@ -8,8 +8,7 @@
   "module": "dist/spip-api.esm.js",
   "scripts": {
     "mongo": "mongod --dbpath mongodb-dev-store/",
-    "build": "rollup -c",
-    "dev": "rollup -c -w"
+    "build": "rollup -c"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
