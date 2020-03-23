@@ -1,6 +1,6 @@
 {
-  "name": "spip-api",
-  "version": "1.0.0",
+  "name": "@snlab/spip-api",
+  "version": "0.0.1",
   "repository": "https://github.com/spatialnetworkslab/spip-api.git",
   "author": "Spatial Networks Lab",
   "license": "MIT",
@@ -8,7 +8,8 @@
   "module": "dist/spip-api.esm.js",
   "scripts": {
     "mongo": "mongod --dbpath mongodb-dev-store/",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
