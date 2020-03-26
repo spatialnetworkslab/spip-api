@@ -9,7 +9,7 @@
   "scripts": {
     "mongo": "mongod --dbpath mongodb-dev-store/",
     "build": "rollup -c",
-    "prepublishOnly": "npm run build"
+    "prepare": "npm run build"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
