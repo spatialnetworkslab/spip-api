@@ -1,4 +1,4 @@
 dist
 leveldb-store
 node_modules
-dev/datasets
+dev
