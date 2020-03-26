@@ -13,5 +13,5 @@ export default function setupAuthRoute (app, auth) {
     }
   })
 
-  app.use('/api', router)
+  app.use('/api/', router)
 }
