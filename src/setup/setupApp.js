@@ -10,6 +10,8 @@ import history from 'connect-history-api-fallback'
 import setupMongoose from './setupMongoose.js'
 import setupJwt from './setupJwt.js'
 
+import setupAuthRoute from '../routes/auth.js'
+
 import clusterSets from '../routes/clusterSets.js'
 import masks from '../routes/masks.js'
 import savedSets from '../routes/savedSets.js'
@@ -35,9 +37,11 @@ export default function setupApp (config) {
   return app
 }
 
-function setupRoutes (app, { portR, mongoPath, jwtSettings, datasetDescriptions, frontendConfig }) {
+function setupRoutes (app, { auth, portR, mongoPath, datasetDescriptions, frontendConfig }) {
+  setupAuthRoute(app, auth)
+
   const mongoose = setupMongoose(mongoPath)
-  const setRoute = createSetRoute(app, jwtSettings)
+  const setRoute = createSetRoute(app, auth)
 
   setRoute(clusterSets(mongoose))
   setRoute(masks(mongoose))
@@ -49,13 +53,13 @@ function setupRoutes (app, { portR, mongoPath, jwtSettings, datasetDescriptions,
   setRoute(configFrontend(frontendConfig))
 }
 
-function createSetRoute (app, jwtSettings) {
-  if (jwtSettings) {
-    const checkJwt = setupJwt(jwtSettings)
+function createSetRoute (app, auth) {
+  if (auth) {
+    const checkJwt = setupJwt(auth.backend)
     return (...otherArgs) => { app.use('/api/', checkJwt, ...otherArgs) }
   }
 
-  if (!jwtSettings) return (...otherArgs) => { app.use('/api/', ...otherArgs) }
+  if (!auth) return (...otherArgs) => { app.use('/api/', ...otherArgs) }
 }
 
 function haltOnTimedout (req, res, next) {
