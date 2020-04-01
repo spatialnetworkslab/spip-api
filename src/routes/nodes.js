@@ -42,17 +42,21 @@ export default function nodes (nodeDatasetDescriptions) {
       // execute query
       const result = []
       result.push(['id', 'count', 'weight'])
-      query.map(function (row) {
-        // if data is for multiple years we need to divide the row sum
-        const rowSum = Math.round(setRowSums(row.sum, req.body, nodeDatasetDescriptions))
-        result.push([row.id, row.count, rowSum])
-      })
-        .then(function (rows) {
-          stringify(result, function (err, output) {
-            if (err) throw err
-            res.send(output)
-          })
+
+      query.then(rows => {
+        for (let i = 0; i < rows.length; i++) {
+          const row = rows[i]
+          const rowSum = Math.round(setRowSums(row.sum, req.body, nodeDatasetDescriptions))
+
+          result.push([row.id, row.count, rowSum])
+        }
+
+        stringify(result, (err, output) => {
+          if (err) throw err
+
+          res.send(output)
         })
+      })
     })
 
   return router
