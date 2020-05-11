@@ -25,6 +25,7 @@
     "jwks-rsa": "^1.8.0",
     "knex": "^0.21.1",
     "level": "^6.0.0",
+    "minimist": "^1.2.5",
     "mixin-deep": "^2.0.1",
     "mongodb": "^3.5.7",
     "mongoose": "^5.8.11",
