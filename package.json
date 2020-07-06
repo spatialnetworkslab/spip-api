@@ -31,7 +31,7 @@
     "mongoose": "^5.8.11",
     "morgan": "^1.10.0",
     "path": "^0.12.7",
-    "sqlite3": "^4.1.1"
+    "sqlite3": "^5.0.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
