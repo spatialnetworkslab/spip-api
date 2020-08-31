@@ -28,7 +28,7 @@
     "minimist": "^1.2.5",
     "mixin-deep": "^2.0.1",
     "mongodb": "^3.5.7",
-    "mongoose": "^5.8.11",
+    "mongoose": "^5.10.2",
     "morgan": "^1.10.0",
     "path": "^0.12.7",
     "sqlite3": "^4.1.1"
