@@ -1,4 +1,2 @@
 config
-dist
-leveldb-store
 node_modules
