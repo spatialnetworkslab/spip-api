@@ -21,15 +21,12 @@ const spipAPI = { setup }
 
 export default spipAPI
 
-const defaultConfig = {
-  port: 3002,
-  portR: 3005,
-  mongoPath: 'mongodb://mongodb'
-}
-
 function parseConfig (config) {
-  return Object.assign(
-    Object.assign({}, defaultConfig),
-    config
-  )
+  const defaultConfig = {
+    port: 3002,
+    portR: 3005,
+    mongoPath: 'mongodb://mongodb'
+  }
+
+  return Object.assign(defaultConfig, config)
 }
