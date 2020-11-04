@@ -4,12 +4,7 @@
   "repository": "https://github.com/spatialnetworkslab/spip-api.git",
   "author": "Spatial Networks Lab",
   "license": "MIT",
-  "main": "dist/spip-api.cjs.js",
-  "module": "dist/spip-api.esm.js",
   "scripts": {
-    "mongo": "mongod --dbpath mongodb-dev-store/",
-    "build": "rollup -c",
-    "prepare": "npm run build",
     "serve": "node -r esm ./server.js"
   },
   "dependencies": {
@@ -20,6 +15,7 @@
     "connect-timeout": "^1.9.0",
     "cookie-parser": "^1.4.5",
     "csv-stringify": "^5.5.1",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
     "helmet": "^3.22.0",
@@ -41,8 +37,6 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "esm": "^3.2.25",
-    "rollup": "^2.33.1"
+    "eslint-plugin-standard": "^4.0.1"
   }
 }
