@@ -5,7 +5,8 @@
   "author": "Spatial Networks Lab",
   "license": "MIT",
   "scripts": {
-    "dev": "docker-compose -f dev-stack.yaml up"
+    "build": "docker build -t spip-api-dev .",
+    "dev": "npm run build && docker-compose -f dev-stack.yaml up"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

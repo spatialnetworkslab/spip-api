@@ -7,7 +7,7 @@ services:
       - mongo-data:/data/db
 
   api:
-    image: spip-api
+    image: spip-api-dev
     volumes:
       - ./config:/usr/src/spip-api/config
       - level-data:/usr/src/spip-api/leveldb-store

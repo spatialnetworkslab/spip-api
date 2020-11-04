@@ -1,4 +1,4 @@
-FROM node:14.15.0-alpine
+FROM node:14.15.0
 WORKDIR /usr/src/spip-api
 COPY package*.json ./
 RUN npm install
