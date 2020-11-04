@@ -6,14 +6,14 @@ Node backend for `spip`.
 
 ```js
 // Install dependencies
-yarn install
+npm install
 
 // Build for production
-yarn build
+npm run build
 
 // Fetch test data
 // TODO
 
 // Run development server with test data and test configuration
-yarn dev
+npm run dev
 ```

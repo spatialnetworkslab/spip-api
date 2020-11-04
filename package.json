@@ -9,37 +9,41 @@
   "scripts": {
     "mongo": "mongod --dbpath mongodb-dev-store/",
     "build": "rollup -c",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "dev": "node -r esm ./dev/server.js"
   },
   "dependencies": {
     "acorn": "^7.2.0",
+    "bl": "^4.0.3",
     "body-parser": "^1.19.0",
     "connect-history-api-fallback": "^1.6.0",
     "connect-timeout": "^1.9.0",
-    "cookie-parser": "^1.4.4",
-    "csv-stringify": "^5.3.6",
+    "cookie-parser": "^1.4.5",
+    "csv-stringify": "^5.5.1",
     "express": "^4.17.1",
-    "express-jwt": "^5.3.3",
+    "express-jwt": "^6.0.0",
     "helmet": "^3.22.0",
-    "http-proxy": "^1.18.0",
+    "http-proxy": "^1.18.1",
     "jwks-rsa": "^1.8.0",
     "knex": "^0.21.1",
-    "level": "^6.0.0",
+    "level": "^6.0.1",
+    "lodash": "^4.17.20",
     "minimist": "^1.2.5",
     "mixin-deep": "^2.0.1",
-    "mongodb": "^3.5.7",
-    "mongoose": "^5.8.11",
+    "mongodb": "^3.6.2",
+    "mongoose": "^5.10.11",
     "morgan": "^1.10.0",
     "path": "^0.12.7",
-    "sqlite3": "^4.1.1"
+    "sqlite3": "^5.0.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "rollup": "^2.1.0"
+    "esm": "^3.2.25",
+    "rollup": "^2.33.1"
   }
 }
