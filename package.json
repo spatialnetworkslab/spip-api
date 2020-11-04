@@ -10,7 +10,7 @@
     "mongo": "mongod --dbpath mongodb-dev-store/",
     "build": "rollup -c",
     "prepare": "npm run build",
-    "dev": "node -r esm ./config/server.js"
+    "serve": "node -r esm ./server.js"
   },
   "dependencies": {
     "acorn": "^7.2.0",
