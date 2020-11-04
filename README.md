@@ -5,15 +5,14 @@ Node backend for `spip`.
 ## Instructions
 
 ```js
-// Install dependencies
-npm install
+// No need to do npm install!
 
-// Build for production
+// Build docker image
 npm run build
 
-// Fetch test data
-// TODO
-
-// Run development server with test data and test configuration
+// Run development stack
 npm run dev
+
+// Run test stack
+npm run test
 ```
