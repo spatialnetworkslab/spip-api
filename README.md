@@ -5,7 +5,8 @@ Node backend for `spip`.
 ## Instructions
 
 ```js
-// No need to do npm install!
+// We only need to run npm install for eslint
+npm install
 
 // Build docker image
 npm run build
