@@ -1,6 +1,6 @@
 import express from 'express'
 import timeout from 'connect-timeout'
-import morgan from 'morgan'
+// import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import helmet from 'helmet'
 import cookieParser from 'cookie-parser'
@@ -24,7 +24,7 @@ export default function setupApp (config) {
   const app = express()
 
   app.use(helmet()) // helmet sets a number of security based middlewares
-  app.use(morgan('dev')) // morgan for logging
+  // app.use(morgan('dev')) // morgan for logging
   app.use(cookieParser())
   app.use(bodyParser.json({ limit: '50mb', parameterLimit: 25000 }))
   app.use(bodyParser.urlencoded({ limit: '50mb', parameterLimit: 25000, extended: true }))
