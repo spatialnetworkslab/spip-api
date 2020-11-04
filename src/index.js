@@ -1,6 +1,7 @@
 import setupApp from './setup/setupApp.js'
 
-function setup (config) {
+function setup (_config) {
+  const config = parseConfig(_config)
   const app = setupApp(config)
   const port = config.port
 
@@ -19,3 +20,13 @@ function setup (config) {
 const spipAPI = { setup }
 
 export default spipAPI
+
+function parseConfig (config) {
+  const defaultConfig = {
+    port: 3002,
+    portR: 3005,
+    mongoPath: 'mongodb://mongodb'
+  }
+
+  return Object.assign(defaultConfig, config)
+}

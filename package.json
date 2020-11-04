@@ -4,22 +4,17 @@
   "repository": "https://github.com/spatialnetworkslab/spip-api.git",
   "author": "Spatial Networks Lab",
   "license": "MIT",
-  "main": "dist/spip-api.cjs.js",
-  "module": "dist/spip-api.esm.js",
   "scripts": {
-    "mongo": "mongod --dbpath mongodb-dev-store/",
-    "build": "rollup -c",
-    "prepare": "npm run build",
-    "dev": "node -r esm ./dev/server.js"
+    "build": "docker build -t spip-api-dev .",
+    "dev": "npm run build && docker-compose -f dev-stack.yaml up"
   },
   "dependencies": {
-    "acorn": "^7.2.0",
-    "bl": "^4.0.3",
     "body-parser": "^1.19.0",
     "connect-history-api-fallback": "^1.6.0",
     "connect-timeout": "^1.9.0",
     "cookie-parser": "^1.4.5",
     "csv-stringify": "^5.5.1",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
     "helmet": "^3.22.0",
@@ -27,7 +22,6 @@
     "jwks-rsa": "^1.8.0",
     "knex": "^0.21.1",
     "level": "^6.0.1",
-    "lodash": "^4.17.20",
     "minimist": "^1.2.5",
     "mixin-deep": "^2.0.1",
     "mongodb": "^3.6.2",
@@ -41,8 +35,6 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "esm": "^3.2.25",
-    "rollup": "^2.33.1"
+    "eslint-plugin-standard": "^4.0.1"
   }
 }
