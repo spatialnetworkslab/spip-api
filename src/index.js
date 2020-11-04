@@ -24,7 +24,7 @@ export default spipAPI
 const defaultConfig = {
   port: 3002,
   portR: 3005,
-  mongoPath: 'mongodb://localhost/tordoir-dev'
+  mongoPath: 'mongodb://mongodb'
 }
 
 function parseConfig (config) {
