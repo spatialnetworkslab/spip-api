@@ -4,4 +4,4 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 EXPOSE 3002
-CMD ["node", "-r", "esm" , "TODO"]
+CMD ["node", "-r", "esm" , "./server.js"]
