@@ -1,4 +1,7 @@
 config
-dist
-leveldb-store
 node_modules
+.eslintrc
+.gitignore
+README.md
+stack-dev.yaml
+Dockerfile

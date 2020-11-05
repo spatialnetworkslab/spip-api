@@ -5,15 +5,15 @@ Node backend for `spip`.
 ## Instructions
 
 ```js
-// Install dependencies
+// We only need to run npm install for eslint
 npm install
 
-// Build for production
+// Build docker image
 npm run build
 
-// Fetch test data
-// TODO
-
-// Run development server with test data and test configuration
+// Run development stack
 npm run dev
+
+// Run test stack
+npm run test
 ```
