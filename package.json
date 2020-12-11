@@ -5,7 +5,9 @@
   "author": "Spatial Networks Lab",
   "license": "MIT",
   "scripts": {
-    "build": "docker build -t spip-api-dev .",
+    "build:development": "docker build -f Dockerfile.development -t spip-api-dev .",
+    "build:production": "docker build -f Dockerfile.production -t spip-api .",
+    "dev": "docker compose -f stack-development up",
     "test": "jest"
   },
   "jest": {

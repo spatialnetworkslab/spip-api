@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:4.4.1-bionic
+    volumes:
+      - mongo-data:/data/db
+
+  api:
+    image: spip-api-dev
+    volumes:
+      - .:/spip-api
+      - ./config:/spip-api/config
+
+volumes:
+  mongo-data:
+    driver: local
