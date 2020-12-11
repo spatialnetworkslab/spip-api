@@ -23,6 +23,12 @@ import configFrontend from '../routes/configFrontend.js'
 export default function setupApp (config) {
   const app = express()
 
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    next()
+  })
+
   app.use(helmet()) // helmet sets a number of security based middlewares
   // app.use(morgan('dev')) // morgan for logging
   app.use(cookieParser())

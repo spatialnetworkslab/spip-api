@@ -1,7 +1,4 @@
-config
-node_modules
-.eslintrc
-.gitignore
-README.md
-stack-dev.yaml
-Dockerfile
+.git
+config-dev
+config-test
+leveldb-store
