@@ -24,9 +24,9 @@ import configFrontend from '../routes/configFrontend.js'
 export default function setupApp (config) {
   const app = express()
 
+  app.use(cors())
   app.use(helmet()) // helmet sets a number of security based middlewares
   // app.use(morgan('dev')) // morgan for logging
-  app.use(cors())
   app.use(cookieParser())
   app.use(bodyParser.json({ limit: '50mb', parameterLimit: 25000 }))
   app.use(bodyParser.urlencoded({ limit: '50mb', parameterLimit: 25000, extended: true }))
