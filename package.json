@@ -7,7 +7,7 @@
   "scripts": {
     "build:development": "docker build -f Dockerfile.development -t spip-api-dev .",
     "build:production": "docker build -f Dockerfile.production -t spip-api .",
-    "dev": "docker compose -f stack-development.yaml up",
+    "dev": "docker-compose -f stack-development.yaml up",
     "test": "jest"
   },
   "jest": {

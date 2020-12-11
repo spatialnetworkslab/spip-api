@@ -25,7 +25,7 @@ function parseConfig (config) {
   const defaultConfig = {
     port: 3002,
     portR: 3005,
-    mongoPath: 'mongodb://mongodb'
+    mongoPath: 'mongodb://mongo/spip'
   }
 
   return Object.assign(defaultConfig, config)

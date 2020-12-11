@@ -10,7 +10,9 @@ services:
     image: spip-api-dev
     volumes:
       - .:/spip-api
-      - ./config:/spip-api/config
+      - ./config-dev:/spip-api/config
+    depends_on:
+      - mongo
 
 volumes:
   mongo-data:

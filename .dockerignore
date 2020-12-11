@@ -1,2 +1,4 @@
 .git
-config
+config-dev
+config-test
+leveldb-store
