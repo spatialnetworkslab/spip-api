@@ -6,6 +6,7 @@ import helmet from 'helmet'
 import cookieParser from 'cookie-parser'
 import path from 'path'
 import history from 'connect-history-api-fallback'
+import cors from 'cors'
 
 import setupMongoose from './setupMongoose.js'
 import setupJwt from './setupJwt.js'
@@ -25,6 +26,7 @@ export default function setupApp (config) {
 
   app.use(helmet()) // helmet sets a number of security based middlewares
   // app.use(morgan('dev')) // morgan for logging
+  app.use(cors())
   app.use(cookieParser())
   app.use(bodyParser.json({ limit: '50mb', parameterLimit: 25000 }))
   app.use(bodyParser.urlencoded({ limit: '50mb', parameterLimit: 25000, extended: true }))
