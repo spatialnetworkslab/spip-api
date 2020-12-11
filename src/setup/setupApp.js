@@ -6,7 +6,6 @@ import helmet from 'helmet'
 import cookieParser from 'cookie-parser'
 import path from 'path'
 import history from 'connect-history-api-fallback'
-import cors from 'cors'
 
 import setupMongoose from './setupMongoose.js'
 import setupJwt from './setupJwt.js'
@@ -24,7 +23,12 @@ import configFrontend from '../routes/configFrontend.js'
 export default function setupApp (config) {
   const app = express()
 
-  app.use(cors())
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    next()
+  })
+
   app.use(helmet()) // helmet sets a number of security based middlewares
   // app.use(morgan('dev')) // morgan for logging
   app.use(cookieParser())
