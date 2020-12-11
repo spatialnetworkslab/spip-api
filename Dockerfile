@@ -1,5 +1,5 @@
 FROM node:14.15.0-alpine3.12
-WORKDIR /usr/src/spip-api
+WORKDIR /spip-api
 COPY package*.json ./
 RUN npm install
 COPY . .
