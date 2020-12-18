@@ -1,4 +1,3 @@
-import stringify from 'csv-stringify'
 import express from 'express'
 import * as cache from '../cache.js'
 
@@ -25,27 +24,15 @@ export default function edges (edgeDatasetDescriptions) {
     // return data based on query
     // query params are sent in the request body
     .post(cache.leveldbCache, (req, res, next) => {
-      res.set('Content-Type', 'text/csv')
+      res.set('Content-Type', 'text/plain')
       // initiate query
       const query = parseDataset(req.body, edgeDatabases, edgeDatasetDescriptions)
       console.log(query.toString())
-      // execute query
-      const result = []
-      result.push(['source', 'sink', 'count', 'weight'])
+
+      const getWeight = weightGetter(req.body, edgeDatasetDescriptions)
 
       query.then(rows => {
-        for (let i = 0; i < rows.length; i++) {
-          const row = rows[i]
-          const rowSum = Math.round(setRowSums(row.sum, req.body, edgeDatasetDescriptions))
-
-          result.push([row.source, row.sink, row.count, rowSum])
-        }
-
-        stringify(result, (err, output) => {
-          if (err) throw err
-
-          res.send(output)
-        })
+        res.send(JSON.stringify(convertToSpipFormat(rows, getWeight)))
       })
     })
 
@@ -159,4 +146,88 @@ function setRowSums (rowSum, parameters, edgeDatasetDescriptions) {
   return (datasetDescription.rowSumCalculation)
     ? datasetDescription.rowSumCalculation(rowSum, parameters, datasetDescription)
     : rowSum
+}
+
+function weightGetter (body, edgeDatasetDescriptions) {
+  return sum => Math.round(setRowSums(sum, body, edgeDatasetDescriptions))
+}
+
+function convertToSpipFormat (rows, getWeight) {
+  const idToRowNumber = new Map()
+
+  const dataInSpipFormat = {
+    a: [],
+    b: [],
+    countAB: [],
+    countBA: [],
+    weightAB: [],
+    weightBA: []
+  }
+
+  let rowNumber = 0
+
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i]
+    const weight = getWeight(row.sum)
+
+    if (anyValueMissing(row, weight)) {
+      continue
+    }
+
+    const source = row.source.toString()
+    const sink = row.sink.toString()
+
+    const reverseId = getId(sink, source)
+
+    if (idToRowNumber.has(reverseId)) {
+      const reverseRowNumber = idToRowNumber.get(reverseId)
+
+      dataInSpipFormat.countBA[reverseRowNumber] = row.count
+      dataInSpipFormat.weightBA[reverseRowNumber] = weight
+    } else {
+      const id = getId(source, sink)
+      idToRowNumber.set(id, rowNumber)
+      rowNumber++
+
+      dataInSpipFormat.a.push(source)
+      dataInSpipFormat.b.push(sink)
+      dataInSpipFormat.countAB.push(row.count)
+      dataInSpipFormat.countBA.push(0)
+      dataInSpipFormat.weightAB.push(weight)
+      dataInSpipFormat.weightBA.push(0)
+    }
+  }
+
+  return sortByWeightSum(dataInSpipFormat)
+}
+
+function anyValueMissing (row, weight) {
+  return (
+    row.source === null ||
+    row.sink === null ||
+    row.count === null ||
+    weight === null
+  )
+}
+
+function getId (a, b) {
+  return `${a}-${b}`
+}
+
+function sortByWeightSum (dataInSpipFormat) {
+  const length = dataInSpipFormat.a.length
+  const indexColumn = Array(length).fill(0).map((_, i) => i)
+
+  indexColumn.sort((a, b) => {
+    const weightSumA = dataInSpipFormat.weightAB[a] + dataInSpipFormat.weightBA[a]
+    const weightSumB = dataInSpipFormat.weightAB[b] + dataInSpipFormat.weightBA[b]
+
+    return weightSumA - weightSumB
+  })
+
+  for (const columnName in dataInSpipFormat) {
+    dataInSpipFormat[columnName] = indexColumn.map(index => dataInSpipFormat[columnName][index])
+  }
+
+  return dataInSpipFormat
 }
