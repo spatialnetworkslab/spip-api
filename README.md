@@ -2,6 +2,9 @@
 
 Node backend for `spip`.
 
+- Main repo at https://gitlab.kuleuven.be/spatial-networks-lab/spip-api
+- Mirror at https://github.com/spatialnetworkslab/spip-api
+
 ## Instructions
 
 ```js
