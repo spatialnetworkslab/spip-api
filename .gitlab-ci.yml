@@ -1,0 +1,11 @@
+stages:
+  - build
+
+include:
+  - 'https://gitlab.kuleuven.be/spatial-networks-lab/cicd-templates/raw/master/kaniko.gitlab-ci.yml'
+  
+build-for-gitlab-project-registry:
+  stage: build
+  only:
+    changes:
+      - Dockerfile
