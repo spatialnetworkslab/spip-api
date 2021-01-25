@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build:development": "docker build -f Dockerfile.development -t spip-api-dev .",
-    "build:production": "docker build -f Dockerfile.production -t spip-api .",
+    "build:production": "docker build -f . -t spip-api .",
     "dev": "docker-compose -f stack-development.yaml up",
     "test": "jest"
   },
