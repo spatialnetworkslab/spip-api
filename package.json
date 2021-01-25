@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build:development": "docker build -f Dockerfile.development -t spip-api-dev .",
-    "build:production": "docker build -f Dockerfile.production -t spip-api .",
+    "build:production": "docker build -t spip-api .",
     "dev": "docker-compose -f stack-development.yaml up",
     "test": "jest"
   },
@@ -34,7 +34,7 @@
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.13",
     "path": "^0.12.7",
-    "sqlite3": "^5.0.1"
+    "sqlite3": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
