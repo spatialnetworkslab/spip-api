@@ -1,19 +1,16 @@
 import express from 'express'
 import httpProxy from 'http-proxy'
 
-export default function model (portR) {
+export default function model (hostR) {
   // location of R server
   // set up with env vars later
   const proxy = httpProxy.createProxyServer({
-    target: {
-      host: 'localhost',
-      port: portR
-    },
+    target: hostR,
     proxyTimeout: 900000 // 15 minutes
   })
 
   proxy.on('error', function (e) {
-    console.log('Error connecting')
+    console.log('Error connecting to R host')
     console.log(e)
   })
 

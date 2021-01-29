@@ -39,7 +39,7 @@ export default function setupApp (config) {
   return app
 }
 
-function setupRoutes (app, { auth, portR, mongoPath, datasetDescriptions, frontendConfig }) {
+function setupRoutes (app, { auth, hostR, mongoPath, datasetDescriptions, frontendConfig }) {
   setupAuthRoute(app, auth)
 
   const mongoose = setupMongoose(mongoPath)
@@ -50,8 +50,8 @@ function setupRoutes (app, { auth, portR, mongoPath, datasetDescriptions, fronte
   setRoute(savedSets(mongoose))
   setRoute(edges(datasetDescriptions.edges))
   setRoute(nodes(datasetDescriptions.nodes))
-  setRoute(model(portR))
-  setRoute(timeout('15m'), haltOnTimedout, model(portR))
+  setRoute(model(hostR))
+  setRoute(timeout('15m'), haltOnTimedout, model(hostR))
   setRoute(configFrontend(frontendConfig))
 }
 

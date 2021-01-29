@@ -20,3 +20,14 @@ npm run dev
 // Run test stack
 npm run test
 ```
+
+## Docker notes
+
+```
+# build container
+docker build --tag spip-api .
+
+# run container, with custom port and config volume mount
+# note that the container will only run if Mongo/R services are running as well
+docker run -e PORT=3006 -v $(pwd)/config:/spip-api/config spip-api
+```

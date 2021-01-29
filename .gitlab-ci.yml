@@ -6,6 +6,3 @@ include:
   
 build-for-gitlab-project-registry:
   stage: build
-  only:
-    changes:
-      - Dockerfile
