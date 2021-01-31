@@ -23,6 +23,7 @@ export default function model (hostR) {
       // stream the content
       proxyReq.write(bodyData)
     }
+    console.log(proxyReq, req)
   })
 
   const router = express.Router()
