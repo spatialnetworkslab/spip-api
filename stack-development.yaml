@@ -8,6 +8,10 @@ services:
 
   api:
     image: spip-api-dev
+    environment:
+      - PORT=3002
+      - HOST_R=http://rserver:3005/
+      - HOST_MONGO=mongo
     volumes:
       - .:/spip-api
       - ./config-dev:/spip-api/config
