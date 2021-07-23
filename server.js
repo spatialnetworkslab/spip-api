@@ -1,6 +1,4 @@
-import spipAPI from './src'
-import config from './config/config.js'
+import spipAPI from "./src";
+import config from "/workspace/infra/api-config/config.js";
 
-spipAPI
-  .setup(config)
-  .run()
+spipAPI.setup(config).run();
