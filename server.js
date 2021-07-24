@@ -1,4 +1,4 @@
 import spipAPI from "./src";
-import config from "./config/api-config/config.js";
+import config from "./config/config.js";
 
 spipAPI.setup(config).run();
