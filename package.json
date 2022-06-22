@@ -34,7 +34,7 @@
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.13",
     "path": "^0.12.7",
-    "sqlite3": "^5.0.0"
+    "sqlite3": "^5.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
